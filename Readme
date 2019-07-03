@@ -1,0 +1,15 @@
+Copyright © 2019 wp.zhou <e615832610@qq.com>
+   All rights reserved.
+
+Project completion date : July 3, 2019
+>>>>>>>>>>>>>>>>>>>>RNG>>>>>>>>>>>>>>>>>>>>>>
+
+Under certain requirements, the standard random function 
+rand of C language can no longer meet our production needs. 
+More different types of probability and statistics types 
+may be used in the project. 
+Here, I refer to http://xoshiro.di.unimi.it/ algorithm 
+lists commonly used probability distribution functions 
+such as uniform distribution, Gaussian distribution, 
+Pareto distribution, etc.
+
