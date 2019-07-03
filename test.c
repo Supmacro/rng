@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "rng_xoroshiro.h"
 
+
 int test_rng(char *rng, int cnt, uint32_t(*rand)(uint32_t, uint32_t))
 {
     int             i;
@@ -21,12 +22,13 @@ int test_rng(char *rng, int cnt, uint32_t(*rand)(uint32_t, uint32_t))
     return 0;
 }
 
-int main()
+
+int main(int argc, char *argv[])
 {
-    char            rng_uniform[] ="[rng  uniform]";
-    char            rng_gaussian[]="[rng gaussian]";
-    char            rng_special[] ="[rng  special]";
-    char            rng_pareto[]  ="[rng   pareto]";
+    char  rng_uniform[] ="[rng  uniform]";
+    char  rng_gaussian[]="[rng gaussian]";
+    char  rng_special[] ="[rng  special]";
+    char  rng_pareto[]  ="[rng   pareto]";
 
     st_rand_thread_init();
    
