@@ -14,28 +14,36 @@ static double st_rand_pct_2_mult;
 /* number of iterations used for numbers generation */
 static unsigned int st_rand_iter ;
 
-/* percentage of 'special' values to use (for special distribution) */
+/* percentage of 'special' values to 
+ * use (for special distribution) */
 static unsigned int st_rand_res;
 
-/* percentage of values to be treated as 'special' (for special distribution) */
+/* percentage of values to be treated 
+ * as 'special' (for special distribution) */
 static unsigned int st_rand_pct;
 
 /* parameters for Pareto distribution */
-static double st_pareto_h;     /* parameter h */
-static double st_pareto_power; /* parameter pre-calculated by h */
+static double st_pareto_h;     
+static double st_pareto_power; 
 
 typedef uint64_t st_rng_state_t[2];
 
 /* TLS st_rng_state_t st_rng_state CK_CC_CACHELINE; */
 st_rng_state_t st_rng_state ;
 
-/* Return a uniformly distributed pseudo-random 64-bit unsigned integer */
+
+///////////////////////////////////////////////////////
+/* Return a uniformly distributed pseudo-random 
+ * 64-bit unsigned integer */
 inline uint64_t st_rand_uniform_uint64(void)
 {
     return xoroshiro_next(st_rng_state);
 }
 
-/* Return a uniformly distributed pseudo-random double in the [0, 1) interval */
+
+//////////////////////////////////////////////////////
+/* Return a uniformly distributed pseudo-random 
+ * double in the [0, 1) interval */
 inline double st_rand_uniform_double(void)
 {
     const uint64_t x = st_rand_uniform_uint64();
@@ -44,6 +52,8 @@ inline double st_rand_uniform_double(void)
     return u.d - 1.0;
 }
 
+
+//////////////////////////////////////////////////////
 void st_rand_init()
 {
     st_rand_iter = 12;
@@ -60,12 +70,16 @@ void st_rand_init()
     st_pareto_power = log(st_pareto_h) / log(1.0 - st_pareto_h);
 }
 
+
+//////////////////////////////////////////////////////
 /* uniform distribution */
 uint32_t st_rand_uniform(uint32_t a, uint32_t b)
 {
     return a + st_rand_uniform_double() * (b - a + 1);
 }
 
+
+//////////////////////////////////////////////////////
 /* gaussian distribution */
 uint32_t st_rand_gaussian(uint32_t a, uint32_t b)
 {
@@ -81,6 +95,8 @@ uint32_t st_rand_gaussian(uint32_t a, uint32_t b)
     return a + (uint32_t) (sum * st_rand_iter_mult) ;
 }
 
+
+//////////////////////////////////////////////////////
 /* 'special' distribution */
 uint32_t st_rand_special(uint32_t a, uint32_t b)
 {
@@ -124,6 +140,8 @@ uint32_t st_rand_special(uint32_t a, uint32_t b)
     return a + (uint32_t) res;
 }
 
+
+//////////////////////////////////////////////////////
 /* Pareto distribution */
 uint32_t st_rand_pareto(uint32_t a, uint32_t b)
 {
@@ -131,6 +149,8 @@ uint32_t st_rand_pareto(uint32_t a, uint32_t b)
                          pow(st_rand_uniform_double(), st_pareto_power));
 }
 
+
+//////////////////////////////////////////////////////
 /* Initialize thread-local RNG state */
 void st_rand_thread_init(void)
 {
