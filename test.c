@@ -2,6 +2,8 @@
 #include "rng_xoroshiro.h"
 
 
+/* This is a public function that can call different probability 
+ * random functions depending on the parameters.*/
 int test_rng(char *rng, int cnt, uint32_t(*rand)(uint32_t, uint32_t))
 {
     int             i;
@@ -22,7 +24,7 @@ int test_rng(char *rng, int cnt, uint32_t(*rand)(uint32_t, uint32_t))
     return 0;
 }
 
-
+/* Probability distributions: uniform, gaussian, special, pareto */
 int main(int argc, char *argv[])
 {
     char  rng_uniform[] ="[rng  uniform]";
